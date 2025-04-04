@@ -193,6 +193,7 @@ select:focus {
 .calculator button#resetBudget,
 .calculator button#resetCompound,
 .calculator button#resetSIP,
+.calculator button#resetCurrency,
 .calculator button#resetFDRD,
 .calculator button#resetRetirement{
     background-color: #777;
