@@ -4,6 +4,12 @@ document.getElementById('calculateInvestment').addEventListener('click', () => {
     const annualContribution = parseFloat(document.getElementById('annualContribution').value);
     const growthRate = parseFloat(document.getElementById('growthRate').value) / 100;
     const investmentYears = parseFloat(document.getElementById('investmentYears').value);
+    const currency = document.getElementById('currency').value;
+
+    let currencySymbol = '$'; // Default to USD
+    if (currency === 'EUR') currencySymbol = '€';
+    else if (currency === 'GBP') currencySymbol = '£';
+    else if (currency === 'INR') currencySymbol = '₹';
 
     let futureValue = initialInvestment;
     for (let i = 0; i < investmentYears; i++) {
@@ -11,6 +17,6 @@ document.getElementById('calculateInvestment').addEventListener('click', () => {
     }
 
     document.getElementById('investmentResult').innerHTML = `
-        <p>Future Value: $${futureValue.toFixed(2)}</p>
+        <p>Future Value: ${currencySymbol}${futureValue.toFixed(2)}</p>
     `;
 });
