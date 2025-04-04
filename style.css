@@ -160,3 +160,26 @@ footer nav a {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
 }
+
+/* Style the select dropdown */
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1); /* Match your input background */
+    color: white; /* Match your input text color */
+}
+
+/* Style the select options */
+select option {
+    background-color: #333; /* A darker background for options */
+    color: white;
+}
+
+/* Style the select on focus */
+select:focus {
+    outline: none;
+    border-color: #00bcd4; /* Highlight color on focus */
+}
