@@ -1,30 +1,21 @@
-// Example: Loan Calculator functionality
-document.getElementById('loan-calculator').addEventListener('click', () => {
-    // Implement loan calculator logic here
-    alert('Loan Calculator functionality will be implemented here.');
-});
+document.getElementById('convertCurrency').addEventListener('click', () => {
+    const fromCurrency = document.getElementById('fromCurrency').value;
+    const toCurrency = document.getElementById('toCurrency').value;
+    const amount = parseFloat(document.getElementById('amount').value);
+    const resultDiv = document.getElementById('currencyResult');
 
-// Example: Chart.js integration
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-        datasets: [{
-            label: 'Investment Growth',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+    const apiKey = 'YOUR_API_KEY'; // Replace with a free API key from exchangerate-api.com
+
+    fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/pair/${fromCurrency}/${toCurrency}/${amount}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.result === 'success') {
+                resultDiv.innerHTML = `<p>${amount} ${fromCurrency} = ${data.conversion_result.toFixed(2)} ${toCurrency}</p>`;
+            } else {
+                resultDiv.innerHTML = `<p>Error: ${data['error-type']}</p>`;
             }
-        }
-    }
+        })
+        .catch(error => {
+            resultDiv.innerHTML = `<p>Error: Could not fetch exchange rates.</p>`;
+        });
 });
-
-// Implement other tool functionalities and data fetching here
