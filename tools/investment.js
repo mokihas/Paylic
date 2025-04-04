@@ -20,7 +20,7 @@ document.getElementById('calculateInvestment').addEventListener('click', () => {
         <p>Future Value: ${currencySymbol}${futureValue.toFixed(2)}</p>
     `;
 });
-document.getElementById('resetLoan').addEventListener('click', () => {
+document.getElementById('resetInvestment').addEventListener('click', () => {
     document.getElementById('initialInvestment').value = '';
     document.getElementById('annualContribution').value = '';
     document.getElementById('growthRate').value = '';
