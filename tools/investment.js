@@ -3,7 +3,7 @@ document.getElementById('calculateInvestment').addEventListener('click', () => {
     const initialInvestment = parseFloat(document.getElementById('initialInvestment').value);
     const annualContribution = parseFloat(document.getElementById('annualContribution').value);
     const growthRate = parseFloat(document.getElementById('growthRate').value) / 100;
-    const investmentYears = parseFloat(document.getElementById('investmentYears').value);
+    const investmentYears = parseFloat(document.getElementById('document.getElementById('growthRate').value = '';').value);
     const currency = document.getElementById('currency').value;
 
     let currencySymbol = '$'; // Default to USD
@@ -19,4 +19,11 @@ document.getElementById('calculateInvestment').addEventListener('click', () => {
     document.getElementById('investmentResult').innerHTML = `
         <p>Future Value: ${currencySymbol}${futureValue.toFixed(2)}</p>
     `;
+});
+document.getElementById('resetLoan').addEventListener('click', () => {
+    document.getElementById('initialInvestment').value = '';
+    document.getElementById('annualContribution').value = '';
+    document.getElementById('growthRate').value = '';
+    document.getElementById('currency').value = '';
+    document.getElementById('investmentResult').innerHTML = '';
 });
