@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator - Paylic</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="../assets/logo.png" alt="Paylic Logo"> Paylic</div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../pages/about.html">About Us</a>
+            <a href="../pages/contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="tool-content">
+            <h2>Loan Calculator</h2>
+            <div class="calculator">
+                <label for="loanAmount">Loan Amount:</label>
+                <input type="number" id="loanAmount">
+                <label for="interestRate">Interest Rate (%):</label>
+                <input type="number" id="interestRate">
+                <label for="loanTerm">Loan Term (years):</label>
+                <input type="number" id="loanTerm">
+                <button id="calculateLoan">Calculate</button>
+                <div id="loanResult"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <a href="../pages/privacy.html">Privacy Policy</a>
+            <a href="../pages/terms.html">Terms of Service</a>
+        </nav>
+        <p>&copy; 2024 Paylic</p>
+    </footer>
+    <script src="loan.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest Calculator - Paylic</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="../assets/logo.png" alt="Paylic Logo"> Paylic</div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../pages/about.html">About Us</a>
+            <a href="../pages/contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="tool-content">
+            <h2>Compound Interest Calculator</h2>
+            <div class="calculator">
+                <label for="principal">Principal Amount:</label>
+                <input type="number" id="principal">
+                <label for="rate">Annual Interest Rate (%):</label>
+                <input type="number" id="rate">
+                <label for="time">Time (years):</label>
+                <input type="number" id="time">
+                <label for="frequency">Compounding Frequency (times per year):</label>
+                <input type="number" id="frequency">
+                <button id="calculateCompound">Calculate</button>
+                <div id="compoundResult"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <a href="../pages/privacy.html">Privacy Policy</a>
+            <a href="../pages/terms.html">Terms of Service</a>
+        </nav>
+        <p>&copy; 2024 Paylic</p>
+    </footer>
+    <script src="compound.js"></script>
+</body>
+</html>

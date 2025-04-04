@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Calculator - Paylic</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="../assets/logo.png" alt="Paylic Logo"> Paylic</div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../pages/about.html">About Us</a>
+            <a href="../pages/contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="tool-content">
+            <h2>Investment Calculator</h2>
+            <div class="calculator">
+                <label for="initialInvestment">Initial Investment:</label>
+                <input type="number" id="initialInvestment">
+                <label for="annualContribution">Annual Contribution:</label>
+                <input type="number" id="annualContribution">
+                <label for="growthRate">Annual Growth Rate (%):</label>
+                <input type="number" id="growthRate">
+                <label for="investmentYears">Investment Years:</label>
+                <input type="number" id="investmentYears">
+                <button id="calculateInvestment">Calculate</button>
+                <div id="investmentResult"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <a href="../pages/privacy.html">Privacy Policy</a>
+            <a href="../pages/terms.html">Terms of Service</a>
+        </nav>
+        <p>&copy; 2024 Paylic</p>
+    </footer>
+    <script src="investment.js"></script>
+</body>
+</html>

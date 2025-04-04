@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Planner - Paylic</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="../assets/logo.png" alt="Paylic Logo"> Paylic</div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../pages/about.html">About Us</a>
+            <a href="../pages/contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="tool-content">
+            <h2>Budget Planner</h2>
+            <div class="budget-planner">
+                <label for="income">Monthly Income:</label>
+                <input type="number" id="income">
+                <label for="expenses">Monthly Expenses:</label>
+                <input type="number" id="expenses">
+                <button id="calculateBudget">Calculate</button>
+                <div id="budgetResult"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <a href="../pages/privacy.html">Privacy Policy</a>
+            <a href="../pages/terms.html">Terms of Service</a>
+        </nav>
+        <p>&copy; 2024 Paylic</p>
+    </footer>
+    <script src="budget.js"></script>
+</body>
+</html>
