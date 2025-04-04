@@ -22,12 +22,12 @@ document.getElementById('resetBudget').addEventListener('click', () => {
     document.getElementById('budgetResult').innerHTML = '';
 });
 
-// Sync number input and slider
+// Sync number input and slider (corrected)
 document.getElementById('income').addEventListener('input', () => {
     document.getElementById('incomeSlider').value = document.getElementById('income').value;
 });
 
-document.getElementById('incomeSlider').addEventListener('input', () => {
+document.getElementById('incomeSlider').addEventListener('change', () => { // Corrected: use 'change'
     document.getElementById('income').value = document.getElementById('incomeSlider').value;
 });
 
@@ -35,6 +35,6 @@ document.getElementById('expenses').addEventListener('input', () => {
     document.getElementById('expensesSlider').value = document.getElementById('expenses').value;
 });
 
-document.getElementById('expensesSlider').addEventListener('input', () => {
+document.getElementById('expensesSlider').addEventListener('change', () => { // Corrected: use 'change'
     document.getElementById('expenses').value = document.getElementById('expensesSlider').value;
 });
