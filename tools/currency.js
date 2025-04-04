@@ -20,3 +20,8 @@ document.getElementById('convertCurrency').addEventListener('click', () => {
             resultDiv.innerHTML = `<p>Error: Could not fetch exchange rates.</p>`;
         });
 });
+document.getElementById('resetLoan').addEventListener('click', () => {
+    document.getElementById('fromCurrency').value = '';
+    document.getElementById('toCurrency').value = '';
+    document.getElementById('currencyResult').innerHTML = '';
+});
