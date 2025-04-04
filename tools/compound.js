@@ -25,3 +25,35 @@ document.getElementById('resetCompound').addEventListener('click', () => {
     document.getElementById('currency').value = '';
     document.getElementById('compoundResult').innerHTML = '';
 });
+// Sync number input and slider
+document.getElementById('principal').addEventListener('input', () => {
+    document.getElementById('principalSlider').value = document.getElementById('principal').value;
+});
+
+document.getElementById('principalSlider').addEventListener('input', () => {
+    document.getElementById('principal').value = document.getElementById('principalSlider').value;
+});
+
+document.getElementById('rate').addEventListener('input', () => {
+    document.getElementById('rateSlider').value = document.getElementById('rate').value;
+});
+
+document.getElementById('rateSlider').addEventListener('input', () => {
+    document.getElementById('rate').value = document.getElementById('rateSlider').value;
+});
+
+document.getElementById('time').addEventListener('input', () => {
+    document.getElementById('timeSlider').value = document.getElementById('time').value;
+});
+
+document.getElementById('timeSlider').addEventListener('input', () => {
+    document.getElementById('time').value = document.getElementById('timeSlider').value;
+});
+
+document.getElementById('frequency').addEventListener('input', () => {
+    document.getElementById('frequencySlider').value = document.getElementById('frequency').value;
+});
+
+document.getElementById('frequencySlider').addEventListener('input', () => {
+    document.getElementById('frequency').value = document.getElementById('frequencySlider').value;
+});
