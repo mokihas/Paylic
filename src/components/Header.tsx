@@ -1,20 +1,48 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
-const CalculatorCard = ({ icon, title, description }: { icon: string, title: string, description: string }) => {
+const Header = ({ darkMode, setDarkMode }: { darkMode: boolean, setDarkMode: React.Dispatch<React.SetStateAction<boolean>> }) => {
   return (
-    <motion.div
-      whileHover={{ y: -10 }}
-      className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow"
-    >
-      <div className="text-5xl mb-4">{icon}</div>
-      <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
-      <button className="text-purple-600 font-medium hover:text-purple-800">
-        Try Now →
-      </button>
-    </motion.div>
-  );
-};
+    <header className={`shadow-sm ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <Link to="/" className="flex items-center space-x-2">
+          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${darkMode ? 'bg-purple-600' : 'bg-purple-600'} text-white font-bold text-xl`}>
+            P
+          </div>
+          <span className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            PAYLIC
+          </span>
+        </Link>
 
-export default CalculatorCard;
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link 
+            to="/" 
+            className={`font-medium ${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-purple-600'}`}
+          >
+            Home
+          </Link>
+          <Link 
+            to="/about" 
+            className={`font-medium ${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-purple-600'}`}
+          >
+            About
+          </Link>
+          <Link 
+            to="/contact" 
+            className={`font-medium ${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-purple-600'}`}
+          >
+            Contact
+          </Link>
+          <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+        </nav>
+
+        <button className="md:hidden text-gray-500">
+          ☰
+        </button>
+      </div>
+    </header>
+  )
+}
+
+export default Header
