@@ -25,3 +25,27 @@ document.getElementById('resetLoan').addEventListener('click', () => {
     document.getElementById('loanTerm').value = '';
     document.getElementById('loanResult').innerHTML = '';
 });
+// Sync number input and slider
+document.getElementById('loanAmount').addEventListener('input', () => {
+    document.getElementById('loanAmountSlider').value = document.getElementById('loanAmount').value;
+});
+
+document.getElementById('loanAmountSlider').addEventListener('input', () => {
+    document.getElementById('loanAmount').value = document.getElementById('loanAmountSlider').value;
+});
+
+document.getElementById('interestRate').addEventListener('input', () => {
+    document.getElementById('interestRateSlider').value = document.getElementById('interestRate').value;
+});
+
+document.getElementById('interestRateSlider').addEventListener('input', () => {
+    document.getElementById('interestRate').value = document.getElementById('interestRateSlider').value;
+});
+
+document.getElementById('loanTerm').addEventListener('input', () => {
+    document.getElementById('loanTermSlider').value = document.getElementById('loanTerm').value;
+});
+
+document.getElementById('loanTermSlider').addEventListener('input', () => {
+    document.getElementById('loanTerm').value = document.getElementById('loanTermSlider').value;
+});
