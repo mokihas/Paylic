@@ -14,7 +14,7 @@ const currency = document.getElementById('currency').value;
     else if (currency === 'INR') currencySymbol = '₹';
     document.getElementById('retirementResult').innerHTML = `<p>Total Savings Needed: ${currencySymbol}${totalSavings.toFixed(2)}</p>`;
 });
-document.getElementById('resetLoan').addEventListener('click', () => {
+document.getElementById('resetRetirement').addEventListener('click', () => {
     document.getElementById('currentAge').value = '';
     document.getElementById('retirementAge').value = '';
     document.getElementById('monthlyExpenses').value = '';
