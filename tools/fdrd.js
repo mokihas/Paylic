@@ -5,9 +5,14 @@ document.getElementById('calculateFDRD').addEventListener('click', () => {
 
     const fdAmount = principal * Math.pow(1 + rate, time);
     const rdAmount = (principal * time) + (principal * rate * (time * (time + 1)) / 2);
+const currency = document.getElementById('currency').value;
 
+    let currencySymbol = '$'; // Default to USD
+    if (currency === 'EUR') currencySymbol = '€';
+    else if (currency === 'GBP') currencySymbol = '£';
+    else if (currency === 'INR') currencySymbol = '₹';
     document.getElementById('fdrdResult').innerHTML = `
-        <p>FD Amount: $${fdAmount.toFixed(2)}</p>
-        <p>RD Amount: $${rdAmount.toFixed(2)}</p>
+        <p>FD Amount: ${currencySymbol}${fdAmount.toFixed(2)}</p>
+        <p>RD Amount: ${currencySymbol}${rdAmount.toFixed(2)}</p>
     `;
 });
