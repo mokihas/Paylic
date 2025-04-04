@@ -15,3 +15,10 @@ const currency = document.getElementById('currency').value;
 
     document.getElementById('sipResult').innerHTML = `<p>Future Value: ${currencySymbol}${futureValue.toFixed(2)}</p>`;
 });
+document.getElementById('resetLoan').addEventListener('click', () => {
+    document.getElementById('monthlyInvestment').value = '';
+    document.getElementById('rate').value = '';
+    document.getElementById('time').value = '';
+    document.getElementById('currency').value = '';
+    document.getElementById('sipResult').innerHTML = '';
+});
