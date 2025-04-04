@@ -198,3 +198,7 @@ select:focus {
 .calculator button#resetRetirement{
     background-color: #777;
 }
+input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
