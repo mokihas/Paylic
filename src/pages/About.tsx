@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '/components/Header';
+import Footer from '/components/Footer';
 import { FiCheckCircle, FiTrendingUp, FiShield, FiBook } from 'react-icons/fi';
 
 const About = () => {
