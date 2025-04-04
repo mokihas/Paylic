@@ -17,7 +17,7 @@ document.getElementById('calculateCompound').addEventListener('click', () => {
         <p>Total Interest: ${currencySymbol}${interest.toFixed(2)}</p>
     `;
 });
-document.getElementById('resetLoan').addEventListener('click', () => {
+document.getElementById('resetCompound').addEventListener('click', () => {
     document.getElementById('principal').value = '';
     document.getElementById('rate').value = '';
     document.getElementById('time').value = '';
