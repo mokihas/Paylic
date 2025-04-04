@@ -17,3 +17,11 @@ document.getElementById('calculateCompound').addEventListener('click', () => {
         <p>Total Interest: ${currencySymbol}${interest.toFixed(2)}</p>
     `;
 });
+document.getElementById('resetLoan').addEventListener('click', () => {
+    document.getElementById('principal').value = '';
+    document.getElementById('rate').value = '';
+    document.getElementById('time').value = '';
+    document.getElementById('frequency').value = '';
+    document.getElementById('currency').value = '';
+    document.getElementById('compoundResult').innerHTML = '';
+});
