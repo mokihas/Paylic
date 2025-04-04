@@ -13,7 +13,7 @@ document.getElementById('calculateBudget').addEventListener('click', () => {
         <p>Savings: ${currencySymbol}${savings.toFixed(2)}</p>
     `;
 });
-document.getElementById('resetLoan').addEventListener('click', () => {
+document.getElementById('resetBudget').addEventListener('click', () => {
     document.getElementById('income').value = '';
     document.getElementById('expenses').value = '';
     document.getElementById('currency').value = '';
