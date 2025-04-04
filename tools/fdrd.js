@@ -16,7 +16,7 @@ const currency = document.getElementById('currency').value;
         <p>RD Amount: ${currencySymbol}${rdAmount.toFixed(2)}</p>
     `;
 });
-document.getElementById('resetLoan').addEventListener('click', () => {
+document.getElementById('resetFDRD').addEventListener('click', () => {
     document.getElementById('principal').value = '';
     document.getElementById('rate').value = '';
     document.getElementById('time').value = '';
