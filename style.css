@@ -183,3 +183,17 @@ select:focus {
     outline: none;
     border-color: #00bcd4; /* Highlight color on focus */
 }
+
+.calculator button{
+    margin-right: 5px;
+}
+
+.calculator button#resetLoan,
+.calculator button#resetInvestment,
+.calculator button#resetBudget,
+.calculator button#resetCompound,
+.calculator button#resetSIP,
+.calculator button#resetFDRD,
+.calculator button#resetRetirement{
+    background-color: #777;
+}
