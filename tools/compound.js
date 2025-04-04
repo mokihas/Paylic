@@ -6,9 +6,14 @@ document.getElementById('calculateCompound').addEventListener('click', () => {
 
     const amount = principal * Math.pow(1 + (rate / frequency), frequency * time);
     const interest = amount - principal;
+    const currency = document.getElementById('currency').value;
 
+    let currencySymbol = '$'; // Default to USD
+    if (currency === 'EUR') currencySymbol = '€';
+    else if (currency === 'GBP') currencySymbol = '£';
+    else if (currency === 'INR') currencySymbol = '₹';
     document.getElementById('compoundResult').innerHTML = `
-        <p>Total Amount: $${amount.toFixed(2)}</p>
-        <p>Total Interest: $${interest.toFixed(2)}</p>
+        <p>Total Amount: ${currencySymbol}${amount.toFixed(2)}</p>
+        <p>Total Interest: ${currencySymbol}${interest.toFixed(2)}</p>
     `;
 });
