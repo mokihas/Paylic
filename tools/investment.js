@@ -27,3 +27,35 @@ document.getElementById('resetInvestment').addEventListener('click', () => {
     document.getElementById('currency').value = '';
     document.getElementById('investmentResult').innerHTML = '';
 });
+// Sync number input and slider
+document.getElementById('initialInvestment').addEventListener('input', () => {
+    document.getElementById('initialInvestmentSlider').value = document.getElementById('initialInvestment').value;
+});
+
+document.getElementById('initialInvestmentSlider').addEventListener('input', () => {
+    document.getElementById('initialInvestment').value = document.getElementById('initialInvestmentSlider').value;
+});
+
+document.getElementById('annualContribution').addEventListener('input', () => {
+    document.getElementById('annualContributionSlider').value = document.getElementById('annualContribution').value;
+});
+
+document.getElementById('annualContributionSlider').addEventListener('input', () => {
+    document.getElementById('annualContribution').value = document.getElementById('annualContributionSlider').value;
+});
+
+document.getElementById('growthRate').addEventListener('input', () => {
+    document.getElementById('growthRateSlider').value = document.getElementById('growthRate').value;
+});
+
+document.getElementById('growthRateSlider').addEventListener('input', () => {
+    document.getElementById('growthRate').value = document.getElementById('growthRateSlider').value;
+});
+
+document.getElementById('investmentYears').addEventListener('input', () => {
+    document.getElementById('investmentYearsSlider').value = document.getElementById('investmentYears').value;
+});
+
+document.getElementById('investmentYearsSlider').addEventListener('input', () => {
+    document.getElementById('investmentYears').value = document.getElementById('investmentYearsSlider').value;
+});
