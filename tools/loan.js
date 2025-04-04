@@ -19,3 +19,9 @@ document.getElementById('calculateLoan').addEventListener('click', () => {
         <p>Total Interest: ${currencySymbol}${totalInterest.toFixed(2)}</p>
     `;
 });
+document.getElementById('resetLoan').addEventListener('click', () => {
+    document.getElementById('loanAmount').value = '';
+    document.getElementById('interestRate').value = '';
+    document.getElementById('loanTerm').value = '';
+    document.getElementById('loanResult').innerHTML = '';
+});
