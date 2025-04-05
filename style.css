@@ -20,7 +20,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 100;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     padding: 15px 20px;
@@ -30,8 +30,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* Optional: limit width for larger screens */
-    margin: 0 auto; /* Optional: center content */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .fixed-header .logo {
@@ -39,7 +39,7 @@ body {
     font-weight: bold;
     display: flex;
     align-items: center;
-    color: white; /* Ensure text is visible */
+    color: white;
 }
 
 .fixed-header .logo img {
@@ -55,7 +55,7 @@ body {
 
 main {
     padding: 40px;
-    padding-top: 80px; /* Adjust as needed based on header height */
+    padding-top: 80px;
 }
 
 .hero {
@@ -77,11 +77,11 @@ main {
     font-size: 1.1em;
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Hover transition */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cta-button:hover, .tool-button:hover, .read-more:hover {
-    background-color: #0097a7; /* Darker shade on hover */
+    background-color: #0097a7;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -102,7 +102,7 @@ main {
     border-radius: 8px;
     text-decoration: none;
     color: white;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Hover transition */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tool-card:hover {
@@ -137,6 +137,12 @@ footer nav a {
 
     .tool-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .tool-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -268,5 +274,5 @@ input[type="range"] {
 }
 
 .tool-button i {
-    margin-right: 8px; /* Add spacing between icon and text */
+    margin-right: 8px;
 }
