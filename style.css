@@ -15,33 +15,47 @@ body {
     background-attachment: fixed;
 }
 
-header {
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 15px 20px;
+}
+
+.fixed-header .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    max-width: 1200px; /* Optional: limit width for larger screens */
+    margin: 0 auto; /* Optional: center content */
 }
 
-.header .logo {
+.fixed-header .logo {
     font-size: 24px;
     font-weight: bold;
     display: flex;
     align-items: center;
+    color: white; /* Ensure text is visible */
 }
 
-header .logo img {
+.fixed-header .logo img {
     height: 40px;
     margin-right: 10px;
 }
 
-nav a {
-    color: #fff;
+.fixed-header nav a {
+    color: white;
     text-decoration: none;
     margin-left: 20px;
 }
 
 main {
     padding: 40px;
+    padding-top: 80px; /* Adjust as needed based on header height */
 }
 
 .hero {
@@ -112,11 +126,12 @@ footer nav a {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    header {
+    .fixed-header .header-content {
         flex-direction: column;
+        align-items: flex-start;
     }
 
-    nav {
+    .fixed-header nav {
         margin-top: 10px;
     }
 
