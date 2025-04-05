@@ -168,6 +168,18 @@ footer nav a {
     padding: 20px;
 }
 
+.tool-content h1 {
+    font-size: 2em;
+}
+
+.tool-content h2 {
+    font-size: 1.5em;
+}
+
+.tool-content p {
+    font-size: 1em;
+}
+
 .calculator,
 .budget-planner,
 .currency-converter {
