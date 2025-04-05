@@ -1,31 +1,81 @@
 // tools/retirement.js
 
 document.getElementById('calculateRetirement').addEventListener('click', () => {
-    const currentAge = parseFloat(document.getElementById('currentAge').value);
-    const retirementAge = parseFloat(document.getElementById('retirementAge').value);
-    const monthlyExpenses = parseFloat(document.getElementById('monthlyExpenses').value);
-    const returnRate = parseFloat(document.getElementById('returnRate').value) / 100;
-    const currency = document.getElementById('currency').value;
+    const currentAge = parseInt(document.getElementById('currentAge').value);
+    const retirementAge = parseInt(document.getElementById('retirementAge').value);
+    const currentSavings = parseFloat(document.getElementById('currentSavings').value);
+    const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value);
+    const annualReturn = parseFloat(document.getElementById('annualReturn').value) / 100;
 
     const yearsToRetirement = retirementAge - currentAge;
-    const totalSavings = monthlyExpenses * 12 * yearsToRetirement * Math.pow(1 + returnRate, yearsToRetirement);
+    let futureSavings = currentSavings;
+    const yearlySavings = [currentSavings]; // Store yearly savings for the chart
 
+    for (let i = 1; i <= yearsToRetirement; i++) {
+        futureSavings = (futureSavings + (monthlyContribution * 12)) * (1 + annualReturn);
+        yearlySavings.push(futureSavings);
+    }
+
+    const currency = document.getElementById('currency').value;
     let currencySymbol = '$'; // Default to USD
     if (currency === 'EUR') currencySymbol = '€';
     else if (currency === 'GBP') currencySymbol = '£';
     else if (currency === 'INR') currencySymbol = '₹';
 
     document.getElementById('retirementResult').innerHTML = `
-        <p>Total Savings Needed: ${currencySymbol}${totalSavings.toFixed(2)}</p>
+        <p>Savings at Retirement: ${currencySymbol}${futureSavings.toFixed(2)}</p>
     `;
+
+    // Create Chart
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line', // Line chart for retirement savings growth
+        data: {
+            labels: Array.from({ length: yearsToRetirement + 1 }, (_, i) => currentAge + i), // Years as labels
+            datasets: [{
+                label: 'Retirement Savings Growth',
+                data: yearlySavings,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Age'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Savings'
+                    }
+                }
+            }
+        }
+    });
+
+    //make chart visible
+    document.getElementById('myChart').style.display = 'block';
 });
 
 document.getElementById('resetRetirement').addEventListener('click', () => {
-    document.getElementById('currentAge').value = '30';
-    document.getElementById('retirementAge').value = '65';
-    document.getElementById('monthlyExpenses').value = '2000';
-    document.getElementById('returnRate').value = '5';
+    document.getElementById('currentAge').value = '';
+    document.getElementById('retirementAge').value = '';
+    document.getElementById('currentSavings').value = '';
+    document.getElementById('monthlyContribution').value = '';
+    document.getElementById('annualReturn').value = '';
     document.getElementById('retirementResult').innerHTML = '';
+
+    //clear chart and hide it
+    const ctx = document.getElementById('myChart').getContext('2d');
+    ctx.clearRect(0, 0, document.getElementById('myChart').width, document.getElementById('myChart').height);
+    document.getElementById('myChart').style.display = 'none';
 });
 
 // Sync number input and slider
@@ -45,18 +95,29 @@ document.getElementById('retirementAgeSlider').addEventListener('input', () => {
     document.getElementById('retirementAge').value = document.getElementById('retirementAgeSlider').value;
 });
 
-document.getElementById('monthlyExpenses').addEventListener('input', () => {
-    document.getElementById('monthlyExpensesSlider').value = document.getElementById('monthlyExpenses').value;
+document.getElementById('currentSavings').addEventListener('input', () => {
+    document.getElementById('currentSavingsSlider').value = document.getElementById('currentSavings').value;
 });
 
-document.getElementById('monthlyExpensesSlider').addEventListener('input', () => {
-    document.getElementById('monthlyExpenses').value = document.getElementById('monthlyExpensesSlider').value;
+document.getElementById('currentSavingsSlider').addEventListener('input', () => {
+    document.getElementById('currentSavings').value = document.getElementById('currentSavingsSlider').value;
 });
 
-document.getElementById('returnRate').addEventListener('input', () => {
-    document.getElementById('returnRateSlider').value = document.getElementById('returnRate').value;
+document.getElementById('monthlyContribution').addEventListener('input', () => {
+    document.getElementById('monthlyContributionSlider').value = document.getElementById('monthlyContribution').value;
 });
 
-document.getElementById('returnRateSlider').addEventListener('input', () => {
-    document.getElementById('returnRate').value = document.getElementById('returnRateSlider').value;
+document.getElementById('monthlyContributionSlider').addEventListener('input', () => {
+    document.getElementById('monthlyContribution').value = document.getElementById('monthlyContributionSlider').value;
 });
+
+document.getElementById('annualReturn').addEventListener('input', () => {
+    document.getElementById('annualReturnSlider').value = document.getElementById('annualReturn').value;
+});
+
+document.getElementById('annualReturnSlider').addEventListener('input', () => {
+    document.getElementById('annualReturn').value = document.getElementById('annualReturnSlider').value;
+});
+
+//hide chart on load
+document.getElementById('myChart').style.display = 'none';
