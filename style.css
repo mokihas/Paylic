@@ -37,14 +37,12 @@ body {
 .fixed-header .logo {
     font-size: 24px;
     font-weight: bold;
-    display: flex;
-    align-items: center;
     color: white;
 }
 
-.fixed-header .logo img {
-    height: 40px;
-    margin-right: 10px;
+.fixed-header .logo a {
+    color: white;
+    text-decoration: none;
 }
 
 .fixed-header nav a {
