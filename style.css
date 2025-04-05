@@ -238,3 +238,7 @@ input[type="range"] {
 .financial-tips .quick-tips{
     text-align: left;
 }
+
+.tool-button i {
+    margin-right: 8px; /* Add spacing between icon and text */
+}
