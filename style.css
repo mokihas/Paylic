@@ -54,7 +54,7 @@ main {
     margin-bottom: 20px;
 }
 
-.cta-button {
+.cta-button, .tool-button, .read-more {
     background-color: #00bcd4;
     color: #fff;
     padding: 15px 30px;
@@ -62,6 +62,7 @@ main {
     border-radius: 5px;
     font-size: 1.1em;
     cursor: pointer;
+    text-decoration: none; /* Added to make anchor tags look like buttons */
 }
 
 .tools {
@@ -170,30 +171,27 @@ footer nav a {
     border-radius: 4px;
 }
 
-/* Style the select dropdown */
 select {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.1); /* Match your input background */
-    color: white; /* Match your input text color */
-}
-
-/* Style the select options */
-select option {
-    background-color: #333; /* A darker background for options */
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
-/* Style the select on focus */
-select:focus {
-    outline: none;
-    border-color: #00bcd4; /* Highlight color on focus */
+select option {
+    background-color: #333;
+    color: white;
 }
 
-.calculator button{
+select:focus {
+    outline: none;
+    border-color: #00bcd4;
+}
+
+.calculator button {
     margin-right: 5px;
 }
 
@@ -204,10 +202,39 @@ select:focus {
 .calculator button#resetSIP,
 .calculator button#resetCurrency,
 .calculator button#resetFDRD,
-.calculator button#resetRetirement{
+.calculator button#resetRetirement {
     background-color: #777;
 }
+
 input[type="range"] {
     width: 100%;
     margin-bottom: 10px;
+}
+
+/* New Home Page Sections Styles */
+
+.get-started, .why-use, .financial-tips{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tool-links{
+    margin-top: 20px;
+}
+
+.tool-links a{
+    margin: 5px;
+}
+
+.why-use ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.financial-tips article{
+    margin-bottom: 20px;
+}
+
+.financial-tips .quick-tips{
+    text-align: left;
 }
