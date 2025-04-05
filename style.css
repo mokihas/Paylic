@@ -54,6 +54,8 @@ body {
 main {
     padding: 40px;
     padding-top: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .hero {
@@ -90,13 +92,13 @@ main {
 .tool-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 1.5em;
     margin-top: 20px;
 }
 
 .tool-card {
     background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+    padding: 1.5em;
     border-radius: 8px;
     text-decoration: none;
     color: white;
@@ -112,15 +114,17 @@ main {
 }
 
 .tool-card h3 {
-    margin-bottom: 10px;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
 }
 
 .tool-card p {
+    font-size: 1em;
     flex-grow: 1;
 }
 
 .tool-card .tool-button {
-    margin-top: 20px;
+    margin-top: auto;
     align-self: flex-start;
 }
 
@@ -150,16 +154,18 @@ footer nav a {
 
     .tool-grid {
         grid-template-columns: 1fr;
+        gap: 1em;
     }
 
     .tool-card {
-        padding: 15px;
+        padding: 1em;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .tool-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.2em;
     }
 }
 
