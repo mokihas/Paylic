@@ -1,4 +1,5 @@
 // tools/loan.js
+
 document.getElementById('calculateLoan').addEventListener('click', () => {
     const loanAmount = parseFloat(document.getElementById('loanAmount').value);
     const interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
@@ -7,6 +8,7 @@ document.getElementById('calculateLoan').addEventListener('click', () => {
     const monthlyPayment = (loanAmount * interestRate) / (1 - Math.pow(1 + interestRate, -loanTerm));
     const totalPayment = monthlyPayment * loanTerm;
     const totalInterest = totalPayment - loanAmount;
+
     const currency = document.getElementById('currency').value;
     let currencySymbol = '$'; // Default to USD
     if (currency === 'EUR') currencySymbol = '€';
@@ -18,13 +20,48 @@ document.getElementById('calculateLoan').addEventListener('click', () => {
         <p>Total Payment: ${currencySymbol}${totalPayment.toFixed(2)}</p>
         <p>Total Interest: ${currencySymbol}${totalInterest.toFixed(2)}</p>
     `;
+
+    // Create Chart
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar', // Bar chart for loan breakdown
+        data: {
+            labels: ['Loan Amount', 'Total Interest'],
+            datasets: [{
+                label: 'Loan Breakdown',
+                data: [loanAmount.toFixed(2), totalInterest.toFixed(2)],
+                backgroundColor: ['rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)'],
+                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    //make chart visible
+    document.getElementById('myChart').style.display = 'block';
 });
+
 document.getElementById('resetLoan').addEventListener('click', () => {
     document.getElementById('loanAmount').value = '';
     document.getElementById('interestRate').value = '';
     document.getElementById('loanTerm').value = '';
     document.getElementById('loanResult').innerHTML = '';
+
+    //clear chart and hide it
+    const ctx = document.getElementById('myChart').getContext('2d');
+    ctx.clearRect(0, 0, document.getElementById('myChart').width, document.getElementById('myChart').height);
+    document.getElementById('myChart').style.display = 'none';
 });
+
 // Sync number input and slider
 document.getElementById('loanAmount').addEventListener('input', () => {
     document.getElementById('loanAmountSlider').value = document.getElementById('loanAmount').value;
@@ -49,3 +86,6 @@ document.getElementById('loanTerm').addEventListener('input', () => {
 document.getElementById('loanTermSlider').addEventListener('input', () => {
     document.getElementById('loanTerm').value = document.getElementById('loanTermSlider').value;
 });
+
+//hide chart on load
+document.getElementById('myChart').style.display = 'none';
