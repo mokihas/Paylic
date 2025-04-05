@@ -62,7 +62,13 @@ main {
     border-radius: 5px;
     font-size: 1.1em;
     cursor: pointer;
-    text-decoration: none; /* Added to make anchor tags look like buttons */
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Hover transition */
+}
+
+.cta-button:hover, .tool-button:hover, .read-more:hover {
+    background-color: #0097a7; /* Darker shade on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .tools {
@@ -82,6 +88,13 @@ main {
     border-radius: 8px;
     text-decoration: none;
     color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Hover transition */
+}
+
+.tool-card:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .charts {
