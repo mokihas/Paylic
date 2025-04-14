@@ -126,7 +126,7 @@ function updateChart(principal, rate, time, frequency, currencySymbol) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: false, // Added Line
             plugins: {
                 legend: {
                     labels: {
