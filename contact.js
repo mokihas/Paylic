@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const serviceID = 'YOUR_SERVICE_ID'; // Replace with your Service ID
-        const templateID = 'YOUR_TEMPLATE_ID'; // Replace with your Template ID
+        const serviceID = 'service_q4nrg3c'; // Replace with your Service ID
+        const templateID = 'template_77ru82o'; // Replace with your Template ID
 
         emailjs.sendForm(serviceID, templateID, this)
             .then(() => {
