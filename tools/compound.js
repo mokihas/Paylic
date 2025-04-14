@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeCalculator() {
     setDefaultValues();
     setupEventListeners();
-    calculateCompound(); // Calculate initially
-    document.getElementById('myChart').style.display = 'block'; // Ensure chart is visible on load
+    document.getElementById('compoundResult').innerHTML = ''; // Clear result on load
+    document.getElementById('myChart').style.display = 'none'; // Hide chart on load
 }
 
 function setDefaultValues() {
@@ -55,12 +55,12 @@ function syncInputs(baseId) {
 
     input.addEventListener('input', function() {
         slider.value = this.value;
-        calculateCompound();
+        // calculateCompound(); // Removed this line
     });
 
     slider.addEventListener('input', function() {
         input.value = this.value;
-        calculateCompound();
+        // calculateCompound(); // Removed this line
     });
 }
 
@@ -199,6 +199,3 @@ function getCurrencySymbol(currency) {
     };
     return symbols[currency] || '$';
 }
-
-//Hide chart on load.
-document.getElementById('myChart').style.display = 'none';
