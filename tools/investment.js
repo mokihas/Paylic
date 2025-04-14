@@ -1,13 +1,15 @@
 // tools/investment.js
 
+let investmentChart; // Declare chart variable globally
+
 document.getElementById('calculateInvestment').addEventListener('click', () => {
     const initialInvestment = parseFloat(document.getElementById('initialInvestment').value);
     const annualContribution = parseFloat(document.getElementById('annualContribution').value);
-    const rate = parseFloat(document.getElementById('rate').value) / 100;
-    const years = parseFloat(document.getElementById('years').value);
+    const rate = parseFloat(document.getElementById('growthRate').value) / 100;
+    const years = parseFloat(document.getElementById('investmentYears').value);
 
     let futureValue = initialInvestment;
-    const yearlyValues = [initialInvestment]; // Store yearly values for the chart
+    const yearlyValues = [initialInvestment];
 
     for (let i = 1; i <= years; i++) {
         futureValue = (futureValue + annualContribution) * (1 + rate);
@@ -18,7 +20,7 @@ document.getElementById('calculateInvestment').addEventListener('click', () => {
     const totalEarnings = futureValue - totalInvestment;
 
     const currency = document.getElementById('currency').value;
-    let currencySymbol = '$'; // Default to USD
+    let currencySymbol = '$';
     if (currency === 'EUR') currencySymbol = '€';
     else if (currency === 'GBP') currencySymbol = '£';
     else if (currency === 'INR') currencySymbol = '₹';
@@ -28,12 +30,17 @@ document.getElementById('calculateInvestment').addEventListener('click', () => {
         <p>Total Earnings: ${currencySymbol}${totalEarnings.toFixed(2)}</p>
     `;
 
-    // Create Chart
+    // Create or update chart
     const ctx = document.getElementById('myChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line', // Line chart for investment growth
+
+    if (investmentChart) {
+        investmentChart.destroy(); // Destroy previous chart if it exists
+    }
+
+    investmentChart = new Chart(ctx, {
+        type: 'line',
         data: {
-            labels: Array.from({ length: years + 1 }, (_, i) => i), // Years as labels
+            labels: Array.from({ length: years + 1 }, (_, i) => i),
             datasets: [{
                 label: 'Investment Growth',
                 data: yearlyValues,
@@ -62,21 +69,22 @@ document.getElementById('calculateInvestment').addEventListener('click', () => {
         }
     });
 
-    //make chart visible
+    // Make chart visible
     document.getElementById('myChart').style.display = 'block';
-
 });
 
 document.getElementById('resetInvestment').addEventListener('click', () => {
     document.getElementById('initialInvestment').value = '';
     document.getElementById('annualContribution').value = '';
-    document.getElementById('rate').value = '';
-    document.getElementById('years').value = '';
+    document.getElementById('growthRate').value = '';
+    document.getElementById('investmentYears').value = '';
     document.getElementById('investmentResult').innerHTML = '';
 
-    //clear chart and hide it
-    const ctx = document.getElementById('myChart').getContext('2d');
-    ctx.clearRect(0, 0, document.getElementById('myChart').width, document.getElementById('myChart').height);
+    // Clear chart and hide it
+    if (investmentChart) {
+        investmentChart.destroy();
+        investmentChart = null;
+    }
     document.getElementById('myChart').style.display = 'none';
 });
 
@@ -97,21 +105,21 @@ document.getElementById('annualContributionSlider').addEventListener('input', ()
     document.getElementById('annualContribution').value = document.getElementById('annualContributionSlider').value;
 });
 
-document.getElementById('rate').addEventListener('input', () => {
-    document.getElementById('rateSlider').value = document.getElementById('rate').value;
+document.getElementById('growthRate').addEventListener('input', () => {
+    document.getElementById('growthRateSlider').value = document.getElementById('growthRate').value;
 });
 
-document.getElementById('rateSlider').addEventListener('input', () => {
-    document.getElementById('rate').value = document.getElementById('rateSlider').value;
+document.getElementById('growthRateSlider').addEventListener('input', () => {
+    document.getElementById('growthRate').value = document.getElementById('growthRateSlider').value;
 });
 
-document.getElementById('years').addEventListener('input', () => {
-    document.getElementById('yearsSlider').value = document.getElementById('years').value;
+document.getElementById('investmentYears').addEventListener('input', () => {
+    document.getElementById('investmentYearsSlider').value = document.getElementById('investmentYears').value;
 });
 
-document.getElementById('yearsSlider').addEventListener('input', () => {
-    document.getElementById('years').value = document.getElementById('yearsSlider').value;
+document.getElementById('investmentYearsSlider').addEventListener('input', () => {
+    document.getElementById('investmentYears').value = document.getElementById('investmentYearsSlider').value;
 });
 
-//hide chart on load
+// Hide chart on load
 document.getElementById('myChart').style.display = 'none';
