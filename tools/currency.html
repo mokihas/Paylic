@@ -8,18 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-   
 </head>
 <body>
     <header class="fixed-header">
         <div class="header-content">
-           <div class="logo">
-            <a href="index.html">Paylic</a>
-        </div>
+            <div class="logo">
+                <a href="../index.html">Paylic</a>
+            </div>
             <nav>
-                <a href="index.html">Home</a>
-                <a href="pages/about.html">About Us</a>
-                <a href="pages/contact.html">Contact</a>
+                <a href="../index.html">Home</a>
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact</a>
             </nav>
         </div>
     </header>
@@ -32,17 +31,21 @@
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
                     <option value="GBP">GBP</option>
+                    <option value="INR">INR</option>
                 </select>
                 <label for="toCurrency">To:</label>
                 <select id="toCurrency">
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
                     <option value="GBP">GBP</option>
+                    <option value="INR">INR</option>
                 </select>
                 <label for="amount">Amount:</label>
                 <input type="number" id="amount">
-                <button id="convertCurrency">Convert</button>
-                <button id="resetCurrency">Reset</button>
+                <div class="button-group">
+                    <button id="convertCurrency" class="tool-button">Convert</button>
+                    <button id="resetCurrency" class="tool-button">Reset</button>
+                </div>
                 <div id="currencyResult"></div>
             </div>
         </section>
