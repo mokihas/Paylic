@@ -13,13 +13,13 @@
 <body>
     <header class="fixed-header">
         <div class="header-content">
-          <div class="logo">
-            <a href="index.html">Paylic</a>
-        </div>
+            <div class="logo">
+                <a href="../index.html">Paylic</a>
+            </div>
             <nav>
-                <a href="index.html">Home</a>
-                <a href="pages/about.html">About Us</a>
-                <a href="pages/contact.html">Contact</a>
+                <a href="../index.html">Home</a>
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact</a>
             </nav>
         </div>
     </header>
@@ -27,7 +27,7 @@
         <section class="tool-content">
             <h2>EMI (Loan) Calculator</h2>
             <div class="calculator">
-               <label for="loanAmount">Loan Amount:</label>
+                <label for="loanAmount">Loan Amount:</label>
                 <input type="number" id="loanAmount" value="10000" min="1000" max="1000000" step="1000">
                 <input type="range" id="loanAmountSlider" min="1000" max="1000000" step="1000" value="10000">
 
@@ -38,41 +38,44 @@
                 <label for="loanTerm">Loan Term (years):</label>
                 <input type="number" id="loanTerm" value="5" min="1" max="30" step="1">
                 <input type="range" id="loanTermSlider" min="1" max="30" step="1" value="5">
+
                 <label for="currency">Currency:</label>
                 <select id="currency">
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
                     <option value="GBP">GBP</option>
                     <option value="INR">INR</option>
-                    </select>
-                <button id="calculateLoan">Calculate</button>
-                <button id="resetLoan">Reset</button>
-        <div id="loanResult"></div>
+                </select>
+                <div class="button-group">
+                    <button id="calculateLoan" class="tool-button">Calculate</button>
+                    <button id="resetLoan" class="tool-button">Reset</button>
+                </div>
+                <div id="loanResult"></div>
                 <canvas id="myChart"></canvas>
                 <div class="tool-explanation">
-    <h3>Make Informed Borrowing Decisions with the Loan Calculator</h3>
-    <p>
-        The Loan Calculator is an essential tool designed to help you understand the financial implications of taking out a loan. Whether you're planning to buy a home, a car, or consolidate debt, this calculator allows you to estimate your monthly payments, total payments, and total interest based on your loan amount, interest rate, and loan term.
-    </p>
-    <p>
-        The formula used by the Loan Calculator is:
-        <strong>M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1]</strong>
-        Where:
-        M = Monthly Payment
-        P = Principal Loan Amount
-        i = Monthly Interest Rate (annual rate / 12)
-        n = Number of Months (loan term in years * 12)
-    </p>
-    <p>
-        This tool is invaluable for anyone considering taking out a loan. It provides a clear picture of the financial commitment involved, allowing you to make informed decisions about your borrowing. By understanding the total cost of your loan, you can ensure that you're managing your debt effectively and avoid financial strain.
-    </p>
-    <p>
-        The benefits of using the Loan Calculator are significant. It helps you understand the impact of different loan terms and interest rates on your monthly payments and total costs. It also allows you to compare different loan options and choose the one that best suits your financial situation.
-    </p>
-    <p>
-        To use the Loan Calculator effectively, start by entering the loan amount. Then, input the annual interest rate and loan term in years. The calculator will then display your monthly payment, total payment, and total interest. Analyze the results to understand how different factors affect your loan costs. Experiment with various scenarios to find the optimal loan terms for your financial goals. With consistent use, the Loan Calculator can become an indispensable tool in your financial planning.
-    </p>
-</div>
+                    <h3>Make Informed Borrowing Decisions with the Loan Calculator</h3>
+                    <p>
+                        The Loan Calculator is an essential tool designed to help you understand the financial implications of taking out a loan. Whether you're planning to buy a home, a car, or consolidate debt, this calculator allows you to estimate your monthly payments, total payments, and total interest based on your loan amount, interest rate, and loan term.
+                    </p>
+                    <p>
+                        The formula used by the Loan Calculator is:
+                        <strong>M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1]</strong>
+                        Where:
+                        M = Monthly Payment
+                        P = Principal Loan Amount
+                        i = Monthly Interest Rate (annual rate / 12)
+                        n = Number of Months (loan term in years * 12)
+                    </p>
+                    <p>
+                        This tool is invaluable for anyone considering taking out a loan. It provides a clear picture of the financial commitment involved, allowing you to make informed decisions about your borrowing. By understanding the total cost of your loan, you can ensure that you're managing your debt effectively and avoid financial strain.
+                    </p>
+                    <p>
+                        The benefits of using the Loan Calculator are significant. It helps you understand the impact of different loan terms and interest rates on your monthly payments and total costs. It also allows you to compare different loan options and choose the one that best suits your financial situation.
+                    </p>
+                    <p>
+                        To use the Loan Calculator effectively, start by entering the loan amount. Then, input the annual interest rate and loan term in years. The calculator will then display your monthly payment, total payment, and total interest. Analyze the results to understand how different factors affect your loan costs. Experiment with various scenarios to find the optimal loan terms for your financial goals. With consistent use, the Loan Calculator can become an indispensable tool in your financial planning.
+                    </p>
+                </div>
             </div>
         </section>
     </main>
