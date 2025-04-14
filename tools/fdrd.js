@@ -1,101 +1,169 @@
-// tools/fdrd.js
+document.addEventListener('DOMContentLoaded', initializeFDRD);
 
-document.getElementById('calculateFDRD').addEventListener('click', () => {
-    const principal = parseFloat(document.getElementById('principal').value);
-    const rate = parseFloat(document.getElementById('rate').value) / 100;
-    const time = parseFloat(document.getElementById('time').value);
-    const type = document.getElementById('type').value; // 'FD' or 'RD'
+let fdrdChart; // Store chart instance
 
-    let maturityAmount, totalInterest;
+function initializeFDRD() {
+    // Event listeners for sliders
+    document.getElementById('principalSlider').addEventListener('input', updatePrincipal);
+    document.getElementById('rateSlider').addEventListener('input', updateRate);
+    document.getElementById('timeSlider').addEventListener('input', updateTime);
+
+    // Event listeners for buttons
+    document.getElementById('calculateFDRD').addEventListener('click', calculateFDRD);
+    document.getElementById('resetFDRD').addEventListener('click', resetFDRD);
+
+    // Hide the chart on load
+    document.getElementById('myChart').style.display = 'none';
+}
+
+// Slider update functions
+function updatePrincipal() {
+    document.getElementById('principal').value = document.getElementById('principalSlider').value;
+}
+
+function updateRate() {
+    document.getElementById('rate').value = document.getElementById('rateSlider').value;
+}
+
+function updateTime() {
+    document.getElementById('time').value = document.getElementById('timeSlider').value;
+}
+
+function calculateFDRD() {
+    console.log('calculateFDRD function called!');
+    const principal = parseFloat(document.getElementById('principal').value) || 0;
+    const rate = parseFloat(document.getElementById('rate').value) / 100 || 0;
+    const time = parseInt(document.getElementById('time').value) || 0;
+    const type = document.getElementById('type').value;
+    const currency = document.getElementById('currency').value; // Get the selected currency
+
+    let totalAmount = 0;
+    let labels = [];
+    let data = [];
 
     if (type === 'FD') {
-        maturityAmount = principal * Math.pow(1 + rate, time);
-        totalInterest = maturityAmount - principal;
-    } else { // RD
-        const monthlyRate = rate / 12;
-        const months = time * 12;
-        maturityAmount = principal * months * (1 + (months + 1) * monthlyRate / 2);
-        totalInterest = maturityAmount - (principal * months);
+        totalAmount = principal * Math.pow(1 + rate, time);
+        for (let i = 0; i <= time; i++) {
+            labels.push(`Year ${i}`);
+            data.push(principal * Math.pow(1 + rate, i));
+        }
+    } else if (type === 'RD') {
+        totalAmount = principal * (((Math.pow(1 + rate / 12, time * 12) - 1) * (1 + rate / 12)) / (rate / 12));
+        let runningTotal = 0;
+        for (let i = 0; i <= time * 12; i++) {
+            labels.push(`Month ${i}`);
+            runningTotal += principal;
+            data.push(runningTotal * Math.pow(1 + rate / 12, time * 12 - i));
+        }
     }
 
-    const currency = document.getElementById('currency').value;
-    let currencySymbol = '$'; // Default to USD
-    if (currency === 'EUR') currencySymbol = '€';
-    else if (currency === 'GBP') currencySymbol = '£';
-    else if (currency === 'INR') currencySymbol = '₹';
+    const interestEarned = totalAmount - (type === 'FD' ? principal : principal * time * 12);
+
+    // Get the currency symbol
+    let currencySymbol = '';
+    switch (currency) {
+        case 'USD':
+            currencySymbol = '$';
+            break;
+        case 'EUR':
+            currencySymbol = '€';
+            break;
+        case 'GBP':
+            currencySymbol = '£';
+            break;
+        case 'INR':
+            currencySymbol = '₹';
+            break;
+        default:
+            currencySymbol = '$'; // Default to USD if currency is unknown
+    }
 
     document.getElementById('fdrdResult').innerHTML = `
-        <p>Maturity Amount: ${currencySymbol}${maturityAmount.toFixed(2)}</p>
-        <p>Total Interest: ${currencySymbol}${totalInterest.toFixed(2)}</p>
+        <h4>Total Amount: ${currencySymbol} ${totalAmount.toFixed(2)}</h4>
+        <h4>Interest Earned: ${currencySymbol} ${interestEarned.toFixed(2)}</h4>
     `;
 
-    // Create Chart
+    updateChart(labels, data);
+    document.getElementById('myChart').style.display = 'block'; // Show Chart after calculate
+}
+
+function updateChart(labels, data) {
+    console.log('updateChart called');
     const ctx = document.getElementById('myChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar', // Bar chart for FD/RD comparison
+    const chartCanvas = document.getElementById('myChart');
+
+    if (fdrdChart) {
+        fdrdChart.destroy();
+    }
+
+    fdrdChart = new Chart(ctx, {
+        type: 'line',
         data: {
-            labels: ['Maturity Amount', 'Total Interest'],
+            labels: labels,
             datasets: [{
-                label: type === 'FD' ? 'Fixed Deposit (FD)' : 'Recurring Deposit (RD)',
-                data: [maturityAmount.toFixed(2), totalInterest.toFixed(2)],
-                backgroundColor: ['rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)'],
-                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
-                borderWidth: 1
+                label: 'FDRD Growth',
+                data: data,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: document.getElementById('type').value === 'FD' ? 'Years' : 'Months',
+                        color: 'white' // Set x-axis title color to white
+                    },
+                    ticks: {
+                        color: 'white' // Set x-axis tick color to white
+                    }
+                },
                 y: {
-                    beginAtZero: true
+                    title: {
+                        display: true,
+                        text: 'Amount',
+                        color: 'white' // Set y-axis title color to white
+                    },
+                    ticks: {
+                        color: 'white' // Set y-axis tick color to white
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white' // Set legend label color to white
+                    }
                 }
             }
         }
     });
 
-    //make chart visible
-    document.getElementById('myChart').style.display = 'block';
+    if (chartCanvas) {
+        chartCanvas.style.display = 'block';
+    }
+}
 
-});
-
-document.getElementById('resetFDRD').addEventListener('click', () => {
-    document.getElementById('principal').value = '';
-    document.getElementById('rate').value = '';
-    document.getElementById('time').value = '';
+function resetFDRD() {
+    document.getElementById('principal').value = '1000';
+    document.getElementById('rate').value = '5';
+    document.getElementById('time').value = '5';
     document.getElementById('type').value = 'FD';
+    document.getElementById('currency').value = 'USD'; // Reset the currency
     document.getElementById('fdrdResult').innerHTML = '';
 
-    //clear chart and hide it
-    const ctx = document.getElementById('myChart').getContext('2d');
-    ctx.clearRect(0, 0, document.getElementById('myChart').width, document.getElementById('myChart').height);
-    document.getElementById('myChart').style.display = 'none';
-});
+    document.getElementById('principalSlider').value = '1000';
+    document.getElementById('rateSlider').value = '5';
+    document.getElementById('timeSlider').value = '5';
 
-// Sync number input and slider
-document.getElementById('principal').addEventListener('input', () => {
-    document.getElementById('principalSlider').value = document.getElementById('principal').value;
-});
+    document.getElementById('myChart').style.display = 'none'; // Hide the chart on reset
 
-document.getElementById('principalSlider').addEventListener('input', () => {
-    document.getElementById('principal').value = document.getElementById('principalSlider').value;
-});
-
-document.getElementById('rate').addEventListener('input', () => {
-    document.getElementById('rateSlider').value = document.getElementById('rate').value;
-});
-
-document.getElementById('rateSlider').addEventListener('input', () => {
-    document.getElementById('rate').value = document.getElementById('rateSlider').value;
-});
-
-document.getElementById('time').addEventListener('input', () => {
-    document.getElementById('timeSlider').value = document.getElementById('time').value;
-});
-
-document.getElementById('timeSlider').addEventListener('input', () => {
-    document.getElementById('time').value = document.getElementById('timeSlider').value;
-});
-
-//hide chart on load
-document.getElementById('myChart').style.display = 'none';
+    if (fdrdChart) {
+        fdrdChart.destroy();
+        fdrdChart = null;
+    }
+}
