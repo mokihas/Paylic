@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeBudget() {
     setDefaultValues();
     setupEventListeners();
-    calculateBudget(); // Calculate initially
-    document.getElementById('myChart').style.display = 'block'; // Ensure chart is visible on load
+    document.getElementById('budgetResult').innerHTML = ''; // Clear result on load
+    document.getElementById('myChart').style.display = 'none'; // Hide chart on load
 }
 
 function setDefaultValues() {
@@ -36,12 +36,12 @@ function syncInputs(baseId) {
 
     input.addEventListener('input', function() {
         slider.value = this.value;
-        calculateBudget();
+        // calculateBudget();  // REMOVED THIS LINE
     });
 
     slider.addEventListener('input', function() {
         input.value = this.value;
-        calculateBudget();
+        // calculateBudget(); // REMOVED THIS LINE
     });
 }
 
@@ -138,6 +138,3 @@ function getCurrencySymbol(currency) {
     };
     return symbols[currency] || '$';
 }
-
-//Hide chart on load.
-document.getElementById('myChart').style.display = 'none';
