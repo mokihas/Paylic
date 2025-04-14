@@ -9,18 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
 </head>
 <body>
     <header class="fixed-header">
         <div class="header-content">
             <div class="logo">
-            <a href="index.html">Paylic</a>
-        </div>
+                <a href="../index.html">Paylic</a>
+            </div>
             <nav>
-                <a href="index.html">Home</a>
-                <a href="pages/about.html">About Us</a>
-                <a href="pages/contact.html">Contact</a>
+                <a href="../index.html">Home</a>
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact</a>
             </nav>
         </div>
     </header>
@@ -43,42 +42,49 @@
                 <label for="frequency">Compounding Frequency (times per year):</label>
                 <input type="number" id="frequency" value="1" min="1" max="365" step="1">
                 <input type="range" id="frequencySlider" min="1" max="365" step="1" value="1">
+
                 <label for="currency">Currency:</label>
                 <select id="currency">
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
                     <option value="GBP">GBP</option>
                     <option value="INR">INR</option>
-                    </select>
-                <button id="calculateCompound">Calculate</button>
-                <button id="resetCompound">Reset</button>
+                </select>
+
+                <div class="button-group">
+                    <button id="calculateCompound" class="tool-button">Calculate</button>
+                    <button id="resetCompound" class="tool-button">Reset</button>
+                </div>
+
                 <div id="compoundResult"></div>
-                <canvas id="myChart"></canvas>
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
                 <div class="tool-explanation">
-    <h3>Unlock the Power of Compounding with Our Calculator</h3>
-    <p>
-        The Compound Interest Calculator is a powerful tool designed to illustrate the magic of compounding, often referred to as the "eighth wonder of the world." It demonstrates how your initial investment can grow exponentially over time, thanks to the reinvestment of earned interest. By inputting your principal amount, interest rate, investment period, and compounding frequency, you can see the future value of your investment and the total interest earned.
-    </p>
-    <p>
-        The formula used by the Compound Interest Calculator is:
-        <strong>A = P (1 + r/n)^(nt)</strong>
-        Where:
-        A = the future value of the investment/loan, including interest
-        P = the principal investment amount (the initial deposit or loan amount)
-        r = the annual interest rate (decimal)
-        n = the number of times that interest is compounded per year
-        t = the number of years the money is invested or borrowed for
-    </p>
-    <p>
-        This tool is invaluable for anyone looking to plan their long-term investments, such as retirement savings, college funds, or general wealth accumulation. It allows you to explore different investment scenarios and understand how various factors, such as interest rates and compounding frequency, can impact your returns. Whether you're a seasoned investor or just starting, this calculator can help you make informed decisions about your financial future.
-    </p>
-    <p>
-        The benefits of using the Compound Interest Calculator are immense. It helps you visualize the potential growth of your investments, empowering you to set realistic financial goals. By understanding the power of compounding, you can make strategic decisions about your investment portfolio and maximize your returns. It also helps you appreciate the importance of starting early and investing consistently, as time is a crucial factor in compounding.
-    </p>
-    <p>
-        To use the Compound Interest Calculator effectively, start by entering your initial investment amount. Then, input the annual interest rate, ensuring it's in decimal form (e.g., 5% should be entered as 0.05). Next, specify the investment period in years and select the compounding frequency (e.g., annually, semi-annually, monthly). The calculator will then display the future value of your investment and the total interest earned. Analyze the results to understand how different factors affect your returns. Experiment with various scenarios to find the optimal investment strategy for your financial goals. With consistent use, the Compound Interest Calculator can become an indispensable tool in your financial planning arsenal.
-    </p>
-</div>
+                    <h3>Unlock the Power of Compounding with Our Calculator</h3>
+                    <p>
+                        The Compound Interest Calculator is a powerful tool designed to illustrate the magic of compounding, often referred to as the "eighth wonder of the world." It demonstrates how your initial investment can grow exponentially over time, thanks to the reinvestment of earned interest. By inputting your principal amount, interest rate, investment period, and compounding frequency, you can see the future value of your investment and the total interest earned.
+                    </p>
+                    <p>
+                        The formula used by the Compound Interest Calculator is:
+                        <strong>A = P (1 + r/n)^(nt)</strong>
+                        Where:
+                        A = the future value of the investment/loan, including interest
+                        P = the principal investment amount (the initial deposit or loan amount)
+                        r = the annual interest rate (decimal)
+                        n = the number of times that interest is compounded per year
+                        t = the number of years the money is invested or borrowed for
+                    </p>
+                    <p>
+                        This tool is invaluable for anyone looking to plan their long-term investments, such as retirement savings, college funds, or general wealth accumulation. It allows you to explore different investment scenarios and understand how various factors, such as interest rates and compounding frequency, can impact your returns. Whether you're a seasoned investor or just starting, this calculator can help you make informed decisions about your financial future.
+                    </p>
+                    <p>
+                        The benefits of using the Compound Interest Calculator are immense. It helps you visualize the potential growth of your investments, empowering you to set realistic financial goals. By understanding the power of compounding, you can make strategic decisions about your investment portfolio and maximize your returns. It also helps you appreciate the importance of starting early and investing consistently, as time is a crucial factor in compounding.
+                    </p>
+                    <p>
+                        To use the Compound Interest Calculator effectively, start by entering your initial investment amount. Then, input the annual interest rate, ensuring it's in decimal form (e.g., 5% should be entered as 0.05). Next, specify the investment period in years and select the compounding frequency (e.g., annually, semi-annually, monthly). The calculator will then display the future value of your investment and the total interest earned. Analyze the results to understand how different factors affect your returns. Experiment with various scenarios to find the optimal investment strategy for your financial goals. With consistent use, the Compound Interest Calculator can become an indispensable tool in your financial planning arsenal.
+                    </p>
+                </div>
             </div>
         </section>
     </main>
