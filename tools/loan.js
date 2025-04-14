@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: false, // Added line
                 scales: {
                     y: {
                         beginAtZero: true,
