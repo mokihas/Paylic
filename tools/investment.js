@@ -51,7 +51,7 @@ document.getElementById('calculateInvestment').addEventListener('click', () => {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: false, // Added line
             scales: {
                 x: {
                     title: {
