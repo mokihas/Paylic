@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: false, //Added Line
                 scales: {
                     x: {
                         title: {
