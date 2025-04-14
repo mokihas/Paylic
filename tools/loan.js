@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Hide chart on load
     document.getElementById('myChart').style.display = 'none';
 
+    let loanChart; // Store the Chart.js instance
+
     document.getElementById('calculateLoan').addEventListener('click', () => {
         const loanAmount = parseFloat(document.getElementById('loanAmount').value);
         const interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
@@ -25,7 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create Chart
         const ctx = document.getElementById('myChart').getContext('2d');
-        new Chart(ctx, {
+        if (loanChart){
+            loanChart.destroy();
+        }
+        loanChart = new Chart(ctx, {
             type: 'bar', // Bar chart for loan breakdown
             data: {
                 labels: ['Loan Amount', 'Total Interest'],
@@ -39,24 +44,24 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Added line
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'white' // Set y-axis tick color to white
+                            color: 'white'
                         }
                     },
                     x: {
                         ticks: {
-                            color: 'white' // Set x-axis tick color to white
+                            color: 'white'
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'white' // Set legend label color to white
+                            color: 'white'
                         }
                     }
                 }
@@ -74,8 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('loanResult').innerHTML = '';
 
         // Clear chart and hide it
-        const ctx = document.getElementById('myChart').getContext('2d');
-        ctx.clearRect(0, 0, document.getElementById('myChart').width, document.getElementById('myChart').height);
+        if (loanChart) {
+            loanChart.destroy();
+            loanChart = null;
+        }
         document.getElementById('myChart').style.display = 'none';
     });
 
