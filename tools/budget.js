@@ -1,33 +1,91 @@
-// tools/budget.js
+// Global chart instance
+let budgetChart = null;
 
-document.getElementById('calculateBudget').addEventListener('click', () => {
-    const income = parseFloat(document.getElementById('income').value);
-    const expenses = parseFloat(document.getElementById('expenses').value);
-    const savings = income - expenses;
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeBudget();
+});
+
+function initializeBudget() {
+    setDefaultValues();
+    setupEventListeners();
+    calculateBudget(); // Calculate initially
+    document.getElementById('myChart').style.display = 'block'; // Ensure chart is visible on load
+}
+
+function setDefaultValues() {
+    document.getElementById('income').value = '3000';
+    document.getElementById('expenses').value = '2000';
+    document.getElementById('incomeSlider').value = '3000';
+    document.getElementById('expensesSlider').value = '2000';
+}
+
+function setupEventListeners() {
+    document.getElementById('calculateBudget').addEventListener('click', calculateBudget);
+    document.getElementById('resetBudget').addEventListener('click', resetBudget);
+
+    syncInputs('income');
+    syncInputs('expenses');
+}
+
+function syncInputs(baseId) {
+    const input = document.getElementById(baseId);
+    const slider = document.getElementById(`${baseId}Slider`);
+
+    if (!input || !slider) return;
+
+    input.addEventListener('input', function() {
+        slider.value = this.value;
+        calculateBudget();
+    });
+
+    slider.addEventListener('input', function() {
+        input.value = this.value;
+        calculateBudget();
+    });
+}
+
+function calculateBudget() {
+    const income = parseFloat(document.getElementById('income').value) || 0;
+    const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+    const savings = Math.max(income - expenses, 0);
     const currency = document.getElementById('currency').value;
 
-    let currencySymbol = '$'; // Default to USD
-    if (currency === 'EUR') currencySymbol = '€';
-    else if (currency === 'GBP') currencySymbol = '£';
-    else if (currency === 'INR') currencySymbol = '₹';
+    const currencySymbol = getCurrencySymbol(currency);
 
+    // Update results display
     document.getElementById('budgetResult').innerHTML = `
-        <p>Savings: ${currencySymbol}${savings.toFixed(2)}</p>
+        <h4>Budget Summary</h4>
+        <p><strong>Income:</strong> ${currencySymbol}${income.toFixed(2)}</p>
+        <p><strong>Expenses:</strong> ${currencySymbol}${expenses.toFixed(2)}</p>
+        <p><strong>Savings:</strong> ${currencySymbol}${savings.toFixed(2)}</p>
     `;
 
-    // Create Chart
-    const ctx = document.getElementById('myChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie', // Or 'bar', 'line', etc.
+    // Update chart
+    updateChart(income, expenses, savings, currencySymbol);
+    document.getElementById('myChart').style.display = 'block'; // Make chart visible after calculation
+}
+
+function updateChart(income, expenses, savings, currencySymbol) {
+    const ctx = document.getElementById('myChart');
+    if (!ctx) return;
+
+    // Destroy previous chart if exists
+    if (budgetChart) {
+        budgetChart.destroy();
+    }
+
+    // Create new chart
+    budgetChart = new Chart(ctx, {
+        type: 'pie',
         data: {
             labels: ['Income', 'Expenses', 'Savings'],
             datasets: [{
-                label: 'Budget Breakdown',
                 data: [income, expenses, savings],
                 backgroundColor: [
-                    'rgba(75, 192, 192, 0.2)', // Income color
-                    'rgba(255, 99, 132, 0.2)', // Expenses color
-                    'rgba(54, 162, 235, 0.2)' // Savings color
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)'
                 ],
                 borderColor: [
                     'rgba(75, 192, 192, 1)',
@@ -39,42 +97,47 @@ document.getElementById('calculateBudget').addEventListener('click', () => {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white',
+                        font: {
+                            family: "'Montserrat', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${currencySymbol}${context.raw.toFixed(2)}`;
+                        }
+                    }
+                }
+            }
         }
     });
+}
 
-    //make chart visible
-    document.getElementById('myChart').style.display = 'block';
-
-});
-
-document.getElementById('resetBudget').addEventListener('click', () => {
-    document.getElementById('income').value = '3000';
-    document.getElementById('expenses').value = '2000';
+function resetBudget() {
+    setDefaultValues();
     document.getElementById('budgetResult').innerHTML = '';
 
-    //clear chart and hide it
-    const ctx = document.getElementById('myChart').getContext('2d');
-    ctx.clearRect(0, 0, document.getElementById('myChart').width, document.getElementById('myChart').height);
-    document.getElementById('myChart').style.display = 'none';
-});
+    if (budgetChart) {
+        budgetChart.destroy();
+        budgetChart = null;
+    }
+    document.getElementById('myChart').style.display = 'none'; // Hide chart on reset
+}
 
-// Sync number input and slider
-document.getElementById('income').addEventListener('input', () => {
-    document.getElementById('incomeSlider').value = document.getElementById('income').value;
-});
+function getCurrencySymbol(currency) {
+    const symbols = {
+        'USD': '$',
+        'EUR': '€',
+        'GBP': '£',
+        'INR': '₹'
+    };
+    return symbols[currency] || '$';
+}
 
-document.getElementById('incomeSlider').addEventListener('input', () => {
-    document.getElementById('income').value = document.getElementById('incomeSlider').value;
-});
-
-document.getElementById('expenses').addEventListener('input', () => {
-    document.getElementById('expensesSlider').value = document.getElementById('expenses').value;
-});
-
-document.getElementById('expensesSlider').addEventListener('input', () => {
-    document.getElementById('expenses').value = document.getElementById('expensesSlider').value;
-});
-
-//hide chart on load
+//Hide chart on load.
 document.getElementById('myChart').style.display = 'none';
