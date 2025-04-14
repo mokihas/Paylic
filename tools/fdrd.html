@@ -9,18 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
 </head>
 <body>
     <header class="fixed-header">
         <div class="header-content">
-          <div class="logo">
-            <a href="index.html">Paylic</a>
-        </div>
+            <div class="logo">
+                <a href="../index.html">Paylic</a>
+            </div>
             <nav>
-                <a href="index.html">Home</a>
-                <a href="pages/about.html">About Us</a>
-                <a href="pages/contact.html">Contact</a>
+                <a href="../index.html">Home</a>
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact</a>
             </nav>
         </div>
     </header>
@@ -28,14 +27,17 @@
         <section class="tool-content">
             <h2>FD vs. RD Calculator</h2>
             <div class="calculator">
+                <label for="type">Deposit Type:</label>
+                <select id="type">
+                    <option value="FD">Fixed Deposit (FD)</option>
+                    <option value="RD">Recurring Deposit (RD)</option>
+                </select>
                 <label for="principal">Principal Amount (Per Period for RD):</label>
                 <input type="number" id="principal" value="1000" min="0" max="1000000" step="100">
                 <input type="range" id="principalSlider" min="0" max="1000000" step="100" value="1000">
-
                 <label for="rate">Annual Interest Rate (%):</label>
                 <input type="number" id="rate" value="5" min="0" max="20" step="0.1">
                 <input type="range" id="rateSlider" min="0" max="20" step="0.1" value="5">
-
                 <label for="time">Time (years):</label>
                 <input type="number" id="time" value="5" min="1" max="30" step="1">
                 <input type="range" id="timeSlider" min="1" max="30" step="1" value="5">
@@ -45,42 +47,44 @@
                     <option value="EUR">EUR</option>
                     <option value="GBP">GBP</option>
                     <option value="INR">INR</option>
-                    </select>
-                <button id="calculateFDRD">Calculate</button>
-                <button id="resetFDRD">Reset</button>
+                </select>
+                <div class="button-group">
+                    <button id="calculateFDRD" class="tool-button">Calculate</button>
+                    <button id="resetFDRD" class="tool-button">Reset</button>
+                </div>
                 <div id="fdrdResult"></div>
                 <canvas id="myChart"></canvas>
                 <div class="tool-explanation">
-    <h3>Maximize Your Savings with the FD/RD Calculator</h3>
-    <p>
-        The FD/RD Calculator is designed to help you understand the returns on Fixed Deposits (FDs) and Recurring Deposits (RDs), two popular investment options known for their stability and predictable returns. This tool allows you to calculate the maturity amount and total interest earned based on your principal investment, interest rate, and investment period.
-    </p>
-    <p>
-        For Fixed Deposits (FDs), the formula used is:
-        <strong>A = P (1 + r)^t</strong>
-        Where:
-        A = Maturity Amount
-        P = Principal Amount
-        r = Annual Interest Rate (decimal)
-        t = Time (years)
-        For Recurring Deposits (RDs), the formula is:
-        <strong>M = R * [(1 + i)^n - 1] * (1 + i) / i</strong>
-        Where:
-        M = Maturity Value
-        R = Monthly Installment
-        i = Monthly Interest Rate (annual rate / 12 / 100)
-        n = Number of Months
-    </p>
-    <p>
-        This tool is beneficial for individuals looking for safe and reliable investment options. FDs are ideal for lump-sum investments, offering a fixed interest rate over a specified period. RDs, on the other hand, allow you to invest a fixed amount regularly, making them suitable for disciplined savings. Whether you're planning for a specific financial goal or simply looking to grow your savings, this calculator can help you make informed decisions.
-    </p>
-    <p>
-        The benefits of using the FD/RD Calculator include a clear understanding of potential returns, enabling you to compare different investment options and choose the one that best suits your financial goals. It also helps you appreciate the importance of disciplined savings and long-term financial planning.
-    </p>
-    <p>
-        To use the FD/RD Calculator effectively, start by selecting the type of deposit (FD or RD). Then, input the principal amount, annual interest rate, and investment period. The calculator will then display the maturity amount and total interest earned. Analyze the results to understand how different factors affect your returns. Experiment with various scenarios to find the optimal investment strategy for your financial goals. With consistent use, the FD/RD Calculator can become a valuable tool in your financial planning.
-    </p>
-</div>
+                    <h3>Maximize Your Savings with the FD/RD Calculator</h3>
+                    <p>
+                        The FD/RD Calculator is designed to help you understand the returns on Fixed Deposits (FDs) and Recurring Deposits (RDs), two popular investment options known for their stability and predictable returns. This tool allows you to calculate the maturity amount and total interest earned based on your principal investment, interest rate, and investment period.
+                    </p>
+                    <p>
+                        For Fixed Deposits (FDs), the formula used is:
+                        <strong>A = P (1 + r)^t</strong>
+                        Where:
+                        A = Maturity Amount
+                        P = Principal Amount
+                        r = Annual Interest Rate (decimal)
+                        t = Time (years)
+                        For Recurring Deposits (RDs), the formula is:
+                        <strong>M = R * [(1 + i)^n - 1] * (1 + i) / i</strong>
+                        Where:
+                        M = Maturity Value
+                        R = Monthly Installment
+                        i = Monthly Interest Rate (annual rate / 12 / 100)
+                        n = Number of Months
+                    </p>
+                    <p>
+                        This tool is beneficial for individuals looking for safe and reliable investment options. FDs are ideal for lump-sum investments, offering a fixed interest rate over a specified period. RDs, on the other hand, allow you to invest a fixed amount regularly, making them suitable for disciplined savings. Whether you're planning for a specific financial goal or simply looking to grow your savings, this calculator can help you make informed decisions.
+                    </p>
+                    <p>
+                        The benefits of using the FD/RD Calculator include a clear understanding of potential returns, enabling you to compare different investment options and choose the one that best suits your financial goals. It also helps you appreciate the importance of disciplined savings and long-term financial planning.
+                    </p>
+                    <p>
+                        To use the FD/RD Calculator effectively, start by selecting the type of deposit (FD or RD). Then, input the principal amount, annual interest rate, and investment period. The calculator will then display the maturity amount and total interest earned. Analyze the results to understand how different factors affect your returns. Experiment with various scenarios to find the optimal investment strategy for your financial goals. With consistent use, the FD/RD Calculator can become a valuable tool in your financial planning.
+                    </p>
+                </div>
             </div>
         </section>
     </main>
