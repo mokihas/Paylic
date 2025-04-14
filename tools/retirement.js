@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false, //Added Line
                 scales: {
                     y: {
                         beginAtZero: true,
