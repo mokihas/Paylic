@@ -97,6 +97,7 @@ function updateChart(income, expenses, savings, currencySymbol) {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false, //Added Line
             plugins: {
                 legend: {
                     labels: {
