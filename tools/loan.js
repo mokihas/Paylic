@@ -73,10 +73,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.getElementById('resetLoan').addEventListener('click', () => {
-        document.getElementById('loanAmount').value = '';
-        document.getElementById('interestRate').value = '';
-        document.getElementById('loanTerm').value = '';
+        document.getElementById('loanAmount').value = '10000'; // Default loan amount
+        document.getElementById('interestRate').value = '5'; // Default interest rate
+        document.getElementById('loanTerm').value = '5'; // Default loan term
         document.getElementById('loanResult').innerHTML = '';
+
+        // Reset sliders
+        document.getElementById('loanAmountSlider').value = '10000';
+        document.getElementById('interestRateSlider').value = '5';
+        document.getElementById('loanTermSlider').value = '5';
 
         // Clear chart and hide it
         if (loanChart) {
